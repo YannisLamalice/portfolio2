@@ -65,6 +65,7 @@
             </div>
         </div>
 
+
         <section class="section">
             <h2>Formation</h2>
             <div class="education-item">
@@ -73,7 +74,8 @@
                 <div class="location">AFTEC Rennes</div>
                 <ul>
                     <li>Spécialisation en développement d'applications</li>
-                    <li>Stage développeur IA : SmartMoov Solutions - Création dataset et IA pour panneaux routiers</li>
+                    <li>Stage développeur IA : SmartMoov Solutions - Création dataset et IA pour panneaux routiers
+                    </li>
                     <li>Stage administration BDD : CGRé Rennes</li>
                 </ul>
             </div>
@@ -152,9 +154,9 @@
                 <div class="skills-category">
                     <h3>Développement</h3>
                     <ul>
-                        <li>Langages de programmation backend</li>
+                        <li>Langages de programmation backend (python, java, php)</li>
                         <li>Bases de données SQL et NoSQL</li>
-                        <li>Notions de développement frontend</li>
+                        <li>Notions de développement frontend (html, css, js)</li>
                         <li>Méthodologies Agile</li>
                     </ul>
                 </div>
@@ -175,6 +177,13 @@
                         <li>TOEIC Anglais</li>
                     </ul>
                 </div>
+                <div class="skills-category">
+                    <h3>Langues</h3>
+                    <ul>
+                        <li>Anglais : Courant</li>
+                        <li>Allemand : Intermédiaire</li>
+
+                </div>
 
                 <div class="skills-category">
                     <h3>Soft Skills</h3>
@@ -182,11 +191,25 @@
                         <li>Travail en équipe</li>
                         <li>Gestion du stress</li>
                         <li>Capacité d'adaptation</li>
+                        <li>Leadership</li>
+                        <li>Adaptabilité</li>
+                        <li>Gestion d'équipe</li>
                     </ul>
                 </div>
             </div>
         </section>
+        <section class="section">
+            <h2>Loisirs</h2>
+            <div class="skill-category">
+                <ul>
+                    <li>Cuisine : Asiatique, Traditionnel, Orientale</li>
+                    <li>Musique : Pratique de la guitare</li>
+                    <li>Cinema</li>
+
+                </ul>
+            </div>
     </div>
+    <button id="downloadPDF" class="btn">Télécharger le CV en PDF</button>
 
     <footer>
         <div class="container">
@@ -194,5 +217,51 @@
         </div>
     </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    document.getElementById("downloadPDF").addEventListener("click", function () {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pageHeight = 297;
+        let yPosition = 10; // Position de départ sur la première page
+
+        const header = document.querySelector(".cv-header"); // Sélection de l'en-tête
+        const sections = document.querySelectorAll(".section"); // Sélection des sections du CV
+
+        function addElementToPDF(element, callback) {
+            html2canvas(element, { scale: 2 }).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const imgWidth = 190;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                if (yPosition + imgHeight > pageHeight - 10) {
+                    pdf.addPage();
+                    yPosition = 10;
+                }
+
+                pdf.addImage(imgData, "PNG", 10, yPosition, imgWidth, imgHeight);
+                yPosition += imgHeight + 10;
+
+                callback();
+            });
+        }
+
+        // Ajouter la cv-header en premier, puis les sections
+        addElementToPDF(header, function () {
+            function processSection(index) {
+                if (index >= sections.length) {
+                    pdf.save("CV_Yannis_Thomas.pdf");
+                    return;
+                }
+                addElementToPDF(sections[index], () => processSection(index + 1));
+            }
+            processSection(0);
+        });
+    });
+</script>
+
+
+
 
 </html>
