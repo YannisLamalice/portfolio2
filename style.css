@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -8,13 +9,13 @@
     color: #181818;
 }
 
-body {
+body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-#main p {
+#main p{
     margin-bottom: 0px !important;
 }
 
@@ -42,7 +43,7 @@ body {
     text-decoration: none;
 }
 
-.projetfutur:hover {
+.projetfutur:hover{
     background: #555;
 }
 
@@ -65,11 +66,10 @@ header {
 }
 
 
-header h1 a {
+header h1 a{
     float: left;
     text-decoration: none;
 }
-
 header h1 a:hover {
     color: #000000;
     font-weight: 500;
@@ -85,12 +85,12 @@ nav ul li {
     margin-left: 20px;
 }
 
-nav ul li a {
+nav ul li a {  
     text-decoration: none;
 }
 
 
-nav ul li a:hover {
+nav ul li a:hover {  
     color: #000000;
     font-weight: 500;
 }
@@ -105,18 +105,18 @@ section {
     gap: 20px;
 }
 
-.container-accueil-gauche {
+.container-accueil-gauche{
     max-width: 35%;
 }
 
-.container-btn {
+.container-btn{
     margin-top: 20px;
     display: flex;
     gap: 10px;
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) { 
     .container-accueil {
         display: flex;
         justify-content: center;
@@ -125,24 +125,24 @@ section {
         text-align: center;
     }
 
-    .container-accueil-gauche {
+    .container-accueil-gauche{
         max-width: 100%;
         padding-inline: 100px;
     }
 
-    .container-btn {
+    .container-btn{
         justify-content: center;
     }
 
-    .container-accueil-droite svg {
+    .container-accueil-droite svg{
         width: 300px;
         height: auto;
     }
 
-}
+ }
 
 
-.btn-futur {
+.btn-futur{
     margin-left: 20px;
 }
 
@@ -177,3 +177,4 @@ footer {
     margin-top: auto;
 
 }
+
